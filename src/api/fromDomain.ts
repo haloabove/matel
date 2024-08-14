@@ -5,7 +5,7 @@ export function parseLogData(logString: string) {
     const lines = logString.trim().split('\n');
 
     // Define a regular expression to match the log format
-    const logPattern = /^(\S+) \S+ \S+ \[([\w:/]+\s[+-]\d{4})\] "(GET|POST|PUT|DELETE) ([^"]+)" (\d{3}) \d+ "-" "([^"]+)"/;
+    const logPattern = /^(\S+) \S+ \S+ \[([\w:/]+\s[+-]\d{4})\] "(GET|POST|PUT|DELETE) ([^\s]+) \S+" (\d{3}) \d+ "-" "([^"]+)"/;
 
     // Parse each line and convert it into an object
     const logData = lines.map(line => {

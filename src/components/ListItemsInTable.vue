@@ -1,5 +1,4 @@
 <template>
-  <b-container class="bv-example-row">
     <b-row>
       <b-col>
         <div>
@@ -18,7 +17,6 @@
           ></b-table>
       </b-col>
     </b-row>
-  </b-container>
 </template> 
 
 <script lang="ts">

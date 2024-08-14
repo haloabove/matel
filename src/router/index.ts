@@ -10,12 +10,12 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: TableView
+    component: Statistics
   },
   {
-    path: '/statistics-view',
-    name: 'statistics-view',
-    component: Statistics
+    path: '/table-view',
+    name: 'tableView',
+    component: TableView
   },
   {
     path: '/about',

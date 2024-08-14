@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <b-container class="bv-example-row" id="app">
     <nav>
-      <router-link to="/">List in table</router-link> |
-      <router-link to="/statistics-view">Statistics</router-link> |
+      <router-link to="/">Statistics</router-link> |
+      <router-link to="/table-view">Table view</router-link> |
       <router-link to="/about">About</router-link>
     </nav>
     <router-view/>
-  </div>
+ </b-container>
 </template>
 <script lang="ts">
 import Vue from 'vue';

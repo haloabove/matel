@@ -1,28 +1,23 @@
 <template>
-    <b-container class="bv-example-row">
-        <b-row class="justify-content-md-center text-left">
-            <ListItemsInList :text="`The number of unique IP addresses is: ${ uniqueIpAddresses.length }`" :model="uniqueIpAddresses" />
-        </b-row>
-        <b-row class="justify-content-md-center text-left">
-            <ListItemsInList :text="'The top 3 most visited URLs are:'" :model="topUrls" />
-        </b-row>
-        <b-row class="justify-content-md-center text-left">
-            <ListItemsInList :text="'The top 3 most active IP addresses:'" :model="topIpAddress" />
-        </b-row>
-    </b-container>
+    <div>
+        <ListStatistics :text="`The number of unique IP addresses is: ${uniqueIpAddresses.length}`"
+            :model="uniqueIpAddresses" />
+        <ListStatistics :text="'The top 3 most visited URLs are:'" :model="topUrls" />
+        <ListStatistics :text="'The top 3 most active IP addresses:'" :model="topIpAddress" />
+    </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 import { LogData } from '@/models/index';
-import ListItemsInList from '@/components/ListItemsInList.vue';
+import ListStatistics from '@/components/ListStatistics.vue';
 
 type LogDataKey = keyof LogData;
 
 @Component({
     components: {
-        ListItemsInList
+        ListStatistics
     }
 })
 export default class Statistics extends Vue {
