@@ -1,13 +1,29 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">List in table</router-link> |
+      <router-link to="/statistics-view">Statistics</router-link> |
       <router-link to="/about">About</router-link>
     </nav>
     <router-view/>
   </div>
 </template>
+<script lang="ts">
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import { ListItem } from '@/models/index';
+import {  Action } from 'vuex-class';
 
+@Component({
+})
+export default class App extends Vue {
+  @Action('fetchListItems') private fetchListItems!: () => Promise<ListItem[]>;
+
+  created() {
+    this.fetchListItems();
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
