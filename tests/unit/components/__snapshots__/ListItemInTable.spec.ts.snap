@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItemsInTable.vue renders correctly 1`] = `
+<b-container-stub class="bv-example-row">
+  <b-row-stub>
+    <b-col-stub>
+      <div>
+        Sorting By: <b>ipAddress</b>, Sort Direction:
+        <b>Ascending</b>
+      </div>
+      <b-table-stub striped="" hover="" items="[object Object],[object Object]" fields="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" sort-by="ipAddress" stacked="sm" responsive=""></b-table-stub>
+    </b-col-stub>
+  </b-row-stub>
+</b-container-stub>
+`;

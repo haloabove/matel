@@ -1,28 +1,13 @@
 <template>
     <b-container class="bv-example-row">
-        <b-row class="justify-content-md-center">
-            <b-col lg="4" md="4">
-                <span><b>The number of unique IP addresses is: {{ uniqueIpAddresses.length }}</b></span>
-                <ul class="text-left">
-                    <li v-for="(ip, index) in this.uniqueIpAddresses" :key="index">{{ ip }}</li>
-                </ul>
-            </b-col>
+        <b-row class="justify-content-md-center text-left">
+            <ListItemsInList :text="`The number of unique IP addresses is: ${ uniqueIpAddresses.length }`" :model="uniqueIpAddresses" />
         </b-row>
-        <b-row class="justify-content-md-center">
-            <b-col lg="4" md="4">
-                <div><b>The top 3 most visited URLs are:</b></div>
-                <ul class="text-left">
-                   <li v-for="(url, index) in this.topThreeVisited" :key="index"> URL: {{ url[0] }} count: {{ url[1] }}</li>
-                </ul>
-            </b-col>
+        <b-row class="justify-content-md-center text-left">
+            <ListItemsInList :text="'The top 3 most visited URLs are:'" :model="topUrls" />
         </b-row>
-        <b-row class="justify-content-md-center">
-            <b-col lg="4" md="4">
-                <div><b>The top 3 most active IP addresses:</b></div>
-                <ul class="text-left">
-                   <li v-for="(ipAddress, index) in this.topIpAddress" :key="index"> URL: {{ ipAddress[0] }} count: {{ ipAddress[1] }}</li>
-                </ul>
-            </b-col>
+        <b-row class="justify-content-md-center text-left">
+            <ListItemsInList :text="'The top 3 most active IP addresses:'" :model="topIpAddress" />
         </b-row>
     </b-container>
 </template>
@@ -33,10 +18,10 @@ import { Getter } from 'vuex-class';
 import { LogData } from '@/models/index';
 import ListItemsInList from '@/components/ListItemsInList.vue';
 
-type LogDataKey = keyof LogData; 
+type LogDataKey = keyof LogData;
 
 @Component({
-    components:{
+    components: {
         ListItemsInList
     }
 })
@@ -56,6 +41,10 @@ export default class Statistics extends Vue {
                     return true;
                 }
                 return false;
+            }).map(it => {
+                return {
+                    item: it
+                }
             });
     }
 
@@ -76,11 +65,11 @@ export default class Statistics extends Vue {
         return top3Requests;
     }
 
-    get topUrls(){
+    get topUrls() {
         return this.mapTopThreeVisited('request', 3);
     }
 
-    get topIpAddress(){
+    get topIpAddress() {
         return this.mapTopThreeVisited('ipAddress', 3);
     }
 
@@ -96,13 +85,14 @@ export default class Statistics extends Vue {
 
         const topResults = requestArray
             .sort((a, b) => b[1] - a[1])
-            .slice(0, numberOfResults);
+            .slice(0, numberOfResults).map(it => {
+                return {
+                    item: it[0],
+                    count: it[1]
+                }
+            });
 
         return topResults;
-    }
-
-    created() {
-        console.log(this.listItems);
     }
 }
 </script>

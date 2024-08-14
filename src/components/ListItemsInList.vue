@@ -1,13 +1,8 @@
 <template>
-    <b-col lg="4" md="4">
-        <span><b>{{ text }} {{ model.length }}</b></span>
-        <ul v-if="type!=='array'" class="text-left">
-            <li  v-for="(item, index) in this.model" :key="index">{{ item }}</li>
-        </ul>
-        <ul v-else class="text-left">
-            <li  v-for="(item, index) in this.model" :key="index">
-                <slot name="count"></slot>
-            </li>
+    <b-col lg="6">
+        <span><b>{{ text }}</b></span>
+        <ul class="text-left">
+            <li  v-for="(listItem, index) in this.model" :key="index">{{ listItem.item }} <b v-if="listItem.count">count: {{ listItem.count }}</b></li>
         </ul>
     </b-col>
 </template>
@@ -17,7 +12,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component({
 })
 export default class ListItemsInTable extends Vue {
-    @Prop() model!: [];
+    @Prop() model!: [{ item: string, count: number}];
     @Prop() text!: string;
     @Prop() type!: string;
 }
