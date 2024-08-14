@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Statistics from '@/views/Statistics.vue'
-import ListItemsInList from '@/components/ListItemsInList.vue'
+import ListStatistics from '@/components/ListStatistics.vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -56,7 +56,7 @@ describe('Statistics.vue', () => {
   })
 
   it('renders ListItemsInList components with correct props', () => {
-    const listItems = wrapper.findAllComponents(ListItemsInList)
+    const listItems = wrapper.findAllComponents(ListStatistics)
     expect(listItems).toHaveLength(3)
 
     expect(listItems.at(0).props('text')).toContain('The number of unique IP addresses is: 3')
